@@ -1,6 +1,6 @@
+
 # -*- coding: utf-8 -*-
-# Author: Florian Pfaff
-# Author contact: pfaff@kit.edu
+# Author contact: Florian Pfaff pfaff@kit.edu
 
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
@@ -32,7 +32,7 @@ def writeEntry(entry):
     title=entry["title"]
 
     if "Hanebeck" in authors and not "Uwe D. Hanebeck" in authors:
-        raise NameError("Name Hanebeck faulty in entry " + title)
+	raise NameError("Name Hanebeck faulty in entry " + title)
 
     if not "booktitle" in entry.keys():
         if not "journal" in entry.keys():
@@ -81,9 +81,13 @@ def writeEntry(entry):
     if "address" in entry.keys():
         outputFile.write(entry["address"]+', ')
             
+    if "series" in entry.keys():
+        outputFile.write(entry["series"]+', ')
+
     if not month=='none':
         outputFile.write(month+', ')
-    outputFile.write(str(entry["year"])+'.\n')
+    outputFile.write(str(entry["year"]))
+    outputFile.write('.\n')
     outputFile.write('<p class="infolinks"> <a href="javascript:toggleInfo(\''+pubid+'\',\'bibtex\')"><img src="https://isas.iar.kit.edu/img/BibTeX.png" alt="BibTeX" /></a>')
     if "pdf" in entry.keys():
         outputFile.write(' <a href="https://isas.iar.kit.edu/pdf/'+entry["pdf"]+'" target="_blank"><img src="https://isas.iar.kit.edu/img/PDF.png" alt="PDF" /></a>')
