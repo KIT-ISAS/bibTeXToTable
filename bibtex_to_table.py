@@ -137,9 +137,7 @@ def write_entry(entry, output_file, full_name_to_verify):
             + entry["pdf"]
             + '" target="_blank"><img src="https://isas.iar.kit.edu/img/PDF.png" alt="PDF" /></a>'
         )
-    if "url" in entry.keys() and (
-        not "pdf" in entry.keys() or submission_type == "article"
-    ):
+    if "url" in entry.keys():
         output_file.write(' <a href="' + entry["url"] + '" target="_blank">URL</a>')
     if "annote" in entry.keys():
         output_file.write(' <font color="red">' + entry["annote"] + "</font>")
